@@ -20,8 +20,8 @@
 */
 
 include "functions.php";
-$tmpdir = "/var/www/walks/blindnews/tmp";
-$audiodir = "/var/www/walks/blindnews/audio";
+$tmpdir = "/var/www/walks/strillone/tmp";
+$audiodir = "/var/www/walks/strillone/audio";
 
 // $_POST["speech"] è il testo da sintetizzare
 if (isset($_POST["speech"]) && ($_POST["speech"] != '')) {

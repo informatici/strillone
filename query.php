@@ -21,25 +21,17 @@
 
 include 'config.php';
 
-// all'inizio della pagina
-$time = microtime();
-$time = explode(' ', $time);
-$time = $time[1] + $time[0];
-$start = $time;
-
 if (is_numeric($_GET['edizione'])) {
 
-$time = mktime(0,0,0,substr($_GET['edizione'],4,2),substr($_GET['edizione'],6,2),substr($_GET['edizione'],0,4));
-setlocale(LC_TIME, 'it_IT');
-$new_date = strftime('%A, %d %B %Y',$time); 
+$edizione = substr($_GET['edizione'],0,4) . "-" . substr($_GET['edizione'],4,2) . "-" . substr($_GET['edizione'],6,2);
 
 $wrong_string = array("%","<TAB>","<i>","<I>","</i>","</I>","<b>","<B>","</b>","</B>","<br>","<BR>","<BR />","<BR/>","&nbsp;","&#146;","&#171;","&#187;","&");
 $right_string = array(" %","","","","","","","","",""," "," "," "," "," ","'","'","'","e");
 
 $xml = "<?xml version='1.0' encoding='UTF-8'?>
 	<giornale>
-	<testata>Brescia on line</testata>
-	<edizione>" . $new_date . "</edizione>";
+		<testata>Brescia on line</testata>
+		<edizione>" . $edizione . "</edizione>";
 
 $query = "SELECT * FROM articoli WHERE (edizione = '" . $_GET['edizione'] . "') AND (sezione != '') AND (testo != '') AND ((occhiello != '') OR (titolo != '') OR (sottotitolo != '')) ORDER BY sezione;";
 
@@ -59,20 +51,20 @@ while ($linea = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		$j = 0;
 		
 		if ($i > 1) {
-			$xml .= "</sezione>";
+			$xml .= "			</sezione>";
 		}
 	
-		$xml .= "<sezione>
-			<nome>Sezione " . $i . ": " . $linea['sezione'] . "</nome>";
+		$xml .= "\n			<sezione>
+				<nome>Sezione " . $i . ": " . $linea['sezione'] . "</nome>";
 
 	}
 	
 	$j++;
 	$xml .= "
-			<articolo>
-				<titolo>Articolo " . $j . ": " . trim(str_replace($wrong_string, $right_string, $linea['occhiello'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['titolo'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['sottotitolo'])) . "</titolo>
-				<testo>" . trim(str_replace($wrong_string, $right_string, $linea['testo'])) . "</testo>
-			</articolo>\n";
+					<articolo>
+						<titolo>Articolo " . $j . ": " . trim(str_replace($wrong_string, $right_string, $linea['occhiello'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['titolo'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['sottotitolo'])) . "</titolo>
+						<testo>" . trim(str_replace($wrong_string, $right_string, $linea['testo'])) . "</testo>
+					</articolo>\n";
 			
 
 	$sezione_attiva = $linea['sezione'];

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testate>
+	<testata>
+		<nome>Brescia on line</nome>
+		<edizione>2012-11-20</edizione>
+		<xmlfile>bol_20121120.xml</xmlfile>
+	</testata>
+	<testata>
+		<nome>Brescia on line</nome>
+		<edizione>2012-11-19</edizione>
+		<xmlfile>bol_20121119.xml</xmlfile>
+	</testata>
+	<testata>
+		<nome>Brescia on line</nome>
+		<edizione>2012-11-18</edizione>
+		<xmlfile>bol_20121118.xml</xmlfile>
+	</testata>
+</testate>

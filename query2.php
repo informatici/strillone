@@ -19,52 +19,68 @@
     along with "ISA" I Speak Again.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 
-include 'config.php';
+$edizioni = array();
 
-if (is_numeric($_GET['edizione'])) {
-
-$time = mktime(0,0,0,substr($_GET['edizione'],4,2),substr($_GET['edizione'],6,2),substr($_GET['edizione'],0,4));
-setlocale(LC_TIME, 'it_IT');
-$new_date = strftime('%A, %d %B %Y',$time); 
-
-$wrong_string = array("<TAB>","<i>","<I>","</i>","</I>","<b>","<B>","</b>","</B>","<br>","<BR>","<BR />","<BR/>","&nbsp;","&#146;","&#171;","&#187;","&");
-$right_string = array("","","","","","","","",""," "," "," "," "," ","'","'","'","e");
-
-$xml = "<?xml version='1.0' encoding='UTF-8'?>
-<brescia_on_line>
-	<giornale>
-	<edizione>" . $new_date . "</edizione>";
-
-$query_sezioni = "SELECT DISTINCT sezione FROM articoli WHERE edizione = '" . $_GET['edizione'] . "';";
-$result_sezioni = mysql_query($query_sezioni) or $esito = mysql_error();
-
-while ($linea_sezioni = mysql_fetch_array($result_sezioni, MYSQL_ASSOC)) {
-$xml .= "
-	<sezione>
-		<nome>" . $linea_sezioni['sezione'] . "</nome>";
-			$query_articoli = "SELECT id_articolo,titolo,sottotitolo,testo,occhiello FROM articoli WHERE sezione = '" . $linea_sezioni['sezione'] . "' AND edizione = '" . $_GET['edizione'] . "' AND titolo != '' AND testo != '';";
-			$result_articoli = mysql_query($query_articoli) or $esito = mysql_error();
-			while ($linea_articoli = mysql_fetch_array($result_articoli, MYSQL_ASSOC)) {
-				$xml .= "
-		<articolo>
-			<occhiello>" . trim(str_replace($wrong_string, $right_string, $linea_articoli['occhiello'])) . "</occhiello>
-			<titolo>" . trim(str_replace($wrong_string, $right_string, $linea_articoli['titolo'])) . "</titolo>
-			<sottotitolo>" . trim(str_replace($wrong_string, $right_string, $linea_articoli['sottotitolo'])) . "</sottotitolo>
-			<testo>" . trim(str_replace($wrong_string, $right_string, $linea_articoli['testo'])) . "</testo>
-		</articolo>";
-			}
-		
-$xml .= "</sezione>\n";
+class Edizione {
+    public $numero;
+    public $sezioni = array();
 }
 
-$xml .= "</giornale>
-		</brescia_on_line>";
-
-header('Content-Type: text/xml; charset=utf-8');
-echo($xml);
- 
-} else {
-	echo "errore";
+class Sezione {
+    public $nome;
+    public $articoli;
 }
- 
+
+class Articolo {
+    public $id;
+    public $titolo;
+    public $sottotitolo;
+    public $testo;
+    public $occhiello;
+
+    public function __construct() {
+        $this->titolo = strip_tags(html_entity_decode($this->titolo));
+        $this->sottotitolo = strip_tags(html_entity_decode($this->sottotitolo));
+        $this->testo = strip_tags(html_entity_decode($this->testo));
+        $this->occhiello = strip_tags(html_entity_decode($this->occhiello));
+    }
+}
+
+// Connecting, selecting database
+$link = mysql_connect('localhost', 'root', '') or die('Could not connect: ' . mysql_error());
+
+mysql_select_db('rodenic_walks_blindnews') or die('Could not select database');
+
+$query = "select distinct edizione as numero from articoli where edizione='" . $_GET['edizione'] . "';";
+$result1 = mysql_query($query) or die('Query failed: ' . mysql_error());
+
+while ($edizione = mysql_fetch_object($result1, 'Edizione')) {
+    $query = "select distinct sezione as nome from articoli where edizione='" . $_GET['edizione'] . "';";
+    $result2 = mysql_query($query) or die('Query failed: ' . mysql_error());
+    
+    while ($sezione = mysql_fetch_object($result2, 'Sezione')) {
+        $edizione->sezioni[] = $sezione;
+        
+        $query = "select id_articolo as id, titolo, sottotitolo, testo, occhiello from articoli where edizione='$edizione->numero' and sezione='$sezione->nome';";
+        $result3 = mysql_query($query) or die('Query failed: ' . mysql_error());
+        
+        while ($articolo = mysql_fetch_object($result3, 'Articolo')) {
+            $sezione->articoli[] = $articolo;
+        }
+        
+        mysql_free_result($result3);
+
+    }
+    $edizioni[] = $edizione;
+    
+    mysql_free_result($result2);
+}
+
+mysql_free_result($result1);
+
+print_r(json_encode($edizioni));
+
+// Closing connection
+mysql_close($link);
+
 ?>
