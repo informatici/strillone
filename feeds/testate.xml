@@ -1,18 +1,20 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <testate>
 	<testata>
-		<nome>Brescia on line</nome>
-		<edizione>2012-11-20</edizione>
-		<xmlfile>bol_20121120.xml</xmlfile>
-	</testata>
-	<testata>
-		<nome>Brescia on line</nome>
-		<edizione>2012-11-19</edizione>
-		<xmlfile>bol_20121119.xml</xmlfile>
-	</testata>
-	<testata>
-		<nome>Brescia on line</nome>
+		<nome>Brescia on Line</nome>
 		<edizione>2012-11-18</edizione>
-		<xmlfile>bol_20121118.xml</xmlfile>
+		<url>http://www.walks.to/bresciaonline/feeds/bol_20121118.xml</url>
+	</testata>
+
+	<testata>
+		<nome>Corriere della Sera</nome>
+		<edizione>2012-11-19</edizione>
+		<url>http://www.walks.to/bresciaonline/feeds/cds_20121119.xml</url>
+	</testata>
+
+	<testata>
+		<nome>Mattino di Napoli</nome>
+		<edizione>2012-11-20</edizione>
+		<url>http://www.walks.to/bresciaonline/feeds/mdn_20121120.xml</url>
 	</testata>
 </testate>
