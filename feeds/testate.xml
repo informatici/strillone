@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testate>
 	<testata>
+		<lingua>it</lingua>
+		<nome>Brescia on Line</nome>
+		<edizione>2012-11-20</edizione>
+		<url>http://www.walks.to/bresciaonline/feeds/bol_20121118.xml</url>
+	</testata>
+
+	<testata>
+		<lingua>it</lingua>
+		<nome>Brescia on Line</nome>
+		<edizione>2012-11-19</edizione>
+		<url>http://www.walks.to/bresciaonline/feeds/bol_20121118.xml</url>
+	</testata>
+
+	<testata>
+		<lingua>it</lingua>
 		<nome>Brescia on Line</nome>
 		<edizione>2012-11-18</edizione>
 		<url>http://www.walks.to/bresciaonline/feeds/bol_20121118.xml</url>
 	</testata>
 
 	<testata>
-		<nome>Corriere della Sera</nome>
-		<edizione>2012-11-19</edizione>
-		<url>http://www.walks.to/bresciaonline/feeds/cds_20121119.xml</url>
+		<lingua>en</lingua>
+		<nome>New York Times</nome>
+		<edizione>2012-12-28</edizione>
+		<url>http://www.walks.to/bresciaonline/feeds/nyt_20121228.xml</url>
 	</testata>
 
-	<testata>
-		<nome>Mattino di Napoli</nome>
-		<edizione>2012-11-20</edizione>
-		<url>http://www.walks.to/bresciaonline/feeds/mdn_20121120.xml</url>
-	</testata>
 </testate>

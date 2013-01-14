@@ -39,7 +39,7 @@ $(document).ready(function() {
 	
     jQuery.getGiornale({
 //		url: 'get_feed.php?url=' + escape(giornale_url),
-        url: 'get_feed.php?url=./feeds/20121120.xml',
+        url: 'get_feed.php?url=./feeds/bol_20121120.xml',
         success: function(feed) {
 			giornale['edizione'] = feed.edizione;
 			giornale['sezioni'] = feed.sezioni;

@@ -30,6 +30,7 @@ $right_string = array(" %","","","","","","","","",""," "," "," "," "," ","'","'
 
 $xml = "<?xml version='1.0' encoding='UTF-8'?>
 	<giornale>
+		<lingua>it</lingua>
 		<testata>Brescia on line</testata>
 		<edizione>" . $edizione . "</edizione>";
 
@@ -55,17 +56,17 @@ while ($linea = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		}
 	
 		$xml .= "\n			<sezione>
-				<nome>Sezione " . $i . ": " . $linea['sezione'] . "</nome>";
+			<nome>Sezione " . $i . ": " . $linea['sezione'] . "</nome>";
 
 	}
 	
 	$j++;
 	$xml .= "
-					<articolo>
-						<titolo>Articolo " . $j . ": " . trim(str_replace($wrong_string, $right_string, $linea['occhiello'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['titolo'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['sottotitolo'])) . "</titolo>
-						<testo>" . trim(str_replace($wrong_string, $right_string, $linea['testo'])) . "</testo>
-					</articolo>\n";
-			
+				<articolo>
+					<titolo>Articolo " . $j . ": " . trim(str_replace($wrong_string, $right_string, $linea['occhiello'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['titolo'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['sottotitolo'])) . "</titolo>
+					<testo>" . trim(str_replace($wrong_string, $right_string, $linea['testo'])) . "</testo>
+				</articolo>\n";
+
 
 	$sezione_attiva = $linea['sezione'];
 
