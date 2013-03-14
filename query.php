@@ -63,8 +63,8 @@ while ($linea = mysql_fetch_array($result, MYSQL_ASSOC)) {
 	$j++;
 	$xml .= "
 				<articolo>
-					<titolo>Articolo " . $j . ": " . trim(str_replace($wrong_string, $right_string, $linea['occhiello'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['titolo'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['sottotitolo'])) . "</titolo>
-					<testo>" . trim(str_replace($wrong_string, $right_string, $linea['testo'])) . "</testo>
+					<titolo><![CDATA[Articolo " . $j . ": " . trim(str_replace($wrong_string, $right_string, $linea['occhiello'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['titolo'])) . " " . trim(str_replace($wrong_string, $right_string, $linea['sottotitolo'])) . "]]></titolo>
+					<testo><![CDATA[" . trim(str_replace($wrong_string, $right_string, $linea['testo'])) . "]]></testo>
 				</articolo>\n";
 
 

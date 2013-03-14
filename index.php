@@ -26,7 +26,7 @@ include "functions.php";
 <html lang="it-IT" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<title>News for blind people</title>
+	<title>Strillone - Spoken News for Visually Impaired People (web version)</title>
 	<meta charset="utf-8">
 
 	<script type="text/javascript" src="scripts/jquery.min.js"></script>
@@ -36,7 +36,7 @@ include "functions.php";
 	<script type="text/javascript" src="scripts/jquery.jplayer.inspector.js"></script>
 
 	<script type="text/javascript" src="scripts/utils.js"></script>
-	<link href="css/blindnews.css" rel="stylesheet" type="text/css"/>
+	<link href="css/strillone.css" rel="stylesheet" type="text/css"/>
 
 </head>
 

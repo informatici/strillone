@@ -1,4 +1,3 @@
-var giornale_url = 'http://www.informaticisenzafrontiere.org/feed/';
 var giornale = new Array();
 
 var tree_level = 'sezione';
@@ -8,6 +7,43 @@ var articolo_position = -1;
 var	my_jPlayer;
 
 $(document).ready(function() {
+
+	$(window).bind('keypress',function(e) {
+		var keypressed;
+		var keycharpressed;
+
+		if (window.event) {
+			keypressed = window.event.keyCode;
+		} else if (e) {
+			keypressed = e.which;
+		}
+
+		keycharpressed = String.fromCharCode(keypressed);
+		
+		switch (keycharpressed) {
+		
+			case 'q':
+			naviga('upper_left');
+			break;
+
+			case 'w':
+			naviga('upper_right');
+			break;
+
+			case 'a':
+			naviga('lower_left');
+			break;
+
+			case 's':
+			naviga('lower_right');
+			break;
+			
+			default:
+			break;
+			
+		}
+
+	});
 
 	// Local copy of jQuery selectors, for performance.
 	my_jPlayer = $("#jquery_jplayer");
@@ -34,12 +70,12 @@ $(document).ready(function() {
 	$('#container').height($(window).height());
 	
 	$('.buttons').bind('click',function(e) {
-		naviga(e);
+		naviga(this.id);
 	});
 	
+
     jQuery.getGiornale({
-//		url: 'get_feed.php?url=' + escape(giornale_url),
-        url: 'get_feed.php?url=./feeds/bol_20121120.xml',
+        url: './get_feed.php?testata=gofasano',
         success: function(feed) {
 			giornale['edizione'] = feed.edizione;
 			giornale['sezioni'] = feed.sezioni;
@@ -53,8 +89,9 @@ $(document).ready(function() {
 
 });
 
-function naviga(event) {
-	switch(event.target.id) {
+function naviga(buttonid) {
+
+	switch(buttonid) {
 	
 		case 'upper_left':
 			sezione_position = -1;

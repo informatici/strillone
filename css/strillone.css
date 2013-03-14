@@ -23,25 +23,25 @@ div#lower_right {
 }
 
 div#upper_left {
-	background-color:#00c836;
+	background-color:#03b8ff;
 	background-image:url(../images/arrow_home.png);
 	background-position:bottom right;
 }
 
 div#upper_right {
-	background-color:#00a028;
+	background-color:#00a7fb;
 	background-image:url(../images/arrow_up.png);
 	background-position:bottom left;
 }
 
 div#lower_left {
-	background-color:#00781b;
+	background-color:#0072aa;
 	background-image:url(../images/arrow_enter.png);
 	background-position:top right;
 }
 
 div#lower_right {
-	background-color:#005010;
+	background-color:#008dd3;
 	background-image:url(../images/arrow_down.png);
 	background-position:top left;
 }

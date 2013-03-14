@@ -2,30 +2,16 @@
 <testate>
 	<testata>
 		<lingua>it</lingua>
-		<nome>Brescia on Line</nome>
-		<edizione>2012-11-20</edizione>
-		<url>http://www.walks.to/bresciaonline/feeds/bol_20121118.xml</url>
-	</testata>
-
-	<testata>
-		<lingua>it</lingua>
-		<nome>Brescia on Line</nome>
-		<edizione>2012-11-19</edizione>
-		<url>http://www.walks.to/bresciaonline/feeds/bol_20121118.xml</url>
-	</testata>
-
-	<testata>
-		<lingua>it</lingua>
-		<nome>Brescia on Line</nome>
-		<edizione>2012-11-18</edizione>
-		<url>http://www.walks.to/bresciaonline/feeds/bol_20121118.xml</url>
+		<nome>goFasano</nome>
+		<edizione>2013-03-13</edizione>
+		<url>http://www.walks.to/strillone/get_feed.php?testata=gofasano</url>
 	</testata>
 
 	<testata>
 		<lingua>en</lingua>
 		<nome>New York Times</nome>
 		<edizione>2012-12-28</edizione>
-		<url>http://www.walks.to/bresciaonline/feeds/nyt_20121228.xml</url>
+		<url>http://www.walks.to/strillone/feeds/nyt_20121228.xml</url>
 	</testata>
 
 </testate>

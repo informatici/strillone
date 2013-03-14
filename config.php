@@ -19,12 +19,12 @@
     along with "ISA" I Speak Again.  If not, see <http://www.gnu.org/licenses/>.
 */ 
 
-$version = 'blindnews 0.2 - 21 Novembre 2012';
+$version = 'strillone 0.3 - 7 Febbraio 2013';
 
 $db_host = 'localhost';
 $db_user = 'root';
 $db_password = '';
-$db_name = 'rodenic_walks_blindnews';
+$db_name = 'rodenic_walks_strillone';
 
 $db_connection = mysql_connect($db_host, $db_user, $db_password);
 if ($db_connection == false) die ("Errore nella connessione! Impossibile accedere al database.");
