@@ -17,13 +17,12 @@
 
     You should have received a copy of the GNU General Public License
     along with "ISA" I Speak Again.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 
 function trace($text) {
 	$handle = fopen("tmp/log.txt","a+");
-	fwrite($handle,$text . "\n");
+	fwrite($handle, "[Trace] ".$text."\n");
 	fclose($handle);
-	return;
 }
 
 ?>

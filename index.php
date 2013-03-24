@@ -17,8 +17,7 @@
 
     You should have received a copy of the GNU General Public License
     along with "ISA" I Speak Again.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
-
+*/
 include "functions.php";
 ?>
 <!DOCTYPE html>
@@ -35,6 +34,21 @@ include "functions.php";
 	<script type="text/javascript" src="scripts/jquery.jplayer.min.js"></script>
 	<script type="text/javascript" src="scripts/jquery.jplayer.inspector.js"></script>
 
+	<script type="text/javascript">
+	
+	var ttse = 'festival';
+	
+	<?
+	$ttse = 'festival';
+
+	if (isset($_GET['ttse']) && ($_GET['ttse'] == 'ivona')) {
+		$ttse = 'ivona';
+		echo "ttse = 'ivona';";
+	}
+	?>
+
+	</script>
+	
 	<script type="text/javascript" src="scripts/utils.js"></script>
 	<link href="css/strillone.css" rel="stylesheet" type="text/css"/>
 
@@ -53,7 +67,7 @@ include "functions.php";
 
 </div>
 
-<form name="speechform" id="speechform" method="post" action="ajax_festival.php">
+<form name="speechform" id="speechform" method="post" action="ajax_<? echo $ttse; ?>.php">
 	<input type="hidden" name="speech" id="speech" />
 	<input type="hidden" name="volume_scale" id="volume_scale" value="1"> 
 </form>

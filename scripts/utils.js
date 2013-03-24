@@ -8,33 +8,25 @@ var	my_jPlayer;
 
 $(document).ready(function() {
 
-	$(window).bind('keypress',function(e) {
-		var keypressed;
-		var keycharpressed;
+	$('#lower_right').focus();
 
-		if (window.event) {
-			keypressed = window.event.keyCode;
-		} else if (e) {
-			keypressed = e.which;
-		}
+	$(document).keydown(function(e) {
 
-		keycharpressed = String.fromCharCode(keypressed);
+		switch (e.keyCode) {
 		
-		switch (keycharpressed) {
-		
-			case 'q':
+			case 9:
 			naviga('upper_left');
 			break;
 
-			case 'w':
+			case 38:
 			naviga('upper_right');
 			break;
 
-			case 'a':
+			case 37:
 			naviga('lower_left');
 			break;
 
-			case 's':
+			case 40:
 			naviga('lower_right');
 			break;
 			
@@ -73,7 +65,6 @@ $(document).ready(function() {
 		naviga(this.id);
 	});
 	
-
     jQuery.getGiornale({
         url: './get_feed.php?testata=gofasano',
         success: function(feed) {
@@ -164,19 +155,28 @@ function naviga(buttonid) {
 	}
 }
 
-function blindtext_tts(testo) {
-	my_jPlayer.jPlayer("setMedia", {
-		mp3: "./audiobase/" + testo
-	}).jPlayer("play");
-}
-
 function blindnews_tts(testo) {
-// alert(testo);
  	$('#speech').val(testo);
-	$.post('ajax_festival.php', $('#speechform').serialize(), function(msg) {
-		my_jPlayer.jPlayer("setMedia", {
-			mp3: "./audio/" + msg
-		}).jPlayer("play");
-	});
+	
+	switch (ttse) {
+	
+		default:
+		case 'festival':
+		$.post('ajax_festival.php', $('#speechform').serialize(), function(msg) {
+			my_jPlayer.jPlayer("setMedia", {
+				mp3: "./audio/" + msg
+			}).jPlayer("play");
+		});
+		break;
+		
+		case 'ivona':
+		$.post('ajax_ivona.php', $('#speechform').serialize(), function(msg) {
+			my_jPlayer.jPlayer("setMedia", {
+				mp3: msg
+			}).jPlayer("play");
+		});
+		break;
+	}
+	
 	return false;
 }
